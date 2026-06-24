@@ -17,6 +17,45 @@ This project is designed to run in a fresh directory on another machine. It supp
 - Create and sync GitHub Lists through browser automation
 - Audit whether GitHub List membership matches the classification file
 
+## Five-minute setup
+
+On a fresh Windows machine:
+
+1. Install `Python 3.11+`
+2. Install `Node.js 20+`
+3. Clone this repository
+4. Copy `.env.example` to `.env`
+5. Set `GITHUB_TOKEN` if you want the recommended API export path
+6. Run:
+
+```powershell
+.\scripts\bootstrap.ps1
+.\scripts\menu.ps1
+```
+
+If you only want the simplest first run, choose:
+
+1. `Export stars (API)`
+2. `Classify stars (Rules)`
+3. `Sync GitHub Lists`
+4. `Audit GitHub Lists`
+
+## Workflow map
+
+```mermaid
+flowchart TD
+    A[Export stars] --> B{How to classify?}
+    B --> C[Rules]
+    B --> D[AI]
+    B --> E[Manual JSON or CSV]
+    C --> F[Standard classification files]
+    D --> F
+    E --> G[Import classification]
+    G --> F
+    F --> H[Sync GitHub Lists]
+    H --> I[Audit GitHub Lists]
+```
+
 ## Quick start
 
 1. Install `Python 3.11+` and `Node.js 20+`
@@ -131,7 +170,7 @@ Recommended default:
 - `endpoint: chat_completions`
 - `structured_output: json_object`
 
-If the provider returns an HTML challenge page such as Cloudflare protection, the tool now reports that explicitly instead of failing with a vague parse error.
+If the provider returns an HTML challenge page such as Cloudflare protection, the tool reports that explicitly instead of failing with a vague parse error.
 
 ## GitHub Lists limitation
 
@@ -139,6 +178,51 @@ GitHub has public API support for starring data, but not a stable public API for
 
 - `export` prefers API mode
 - `sync-lists` and `audit-lists` use browser automation
+
+## Common problems
+
+### `export --mode api` fails
+
+Check:
+
+- `GITHUB_TOKEN` is set
+- the token can read your starred repositories
+- the token belongs to the GitHub account you expect
+
+### `export --mode browser` or `sync-lists` fails
+
+Check:
+
+- Chrome is already logged into GitHub
+- Chrome was started with remote debugging on port `9222`
+- the browser session is not blocked by a GitHub login prompt
+
+Example:
+
+```powershell
+& 'C:\Program Files\Google\Chrome\Application\chrome.exe' `
+  --remote-debugging-port=9222 `
+  --user-data-dir="$env:LOCALAPPDATA\Google\Chrome\User Data" `
+  --profile-directory=Default `
+  https://github.com
+```
+
+### AI classification returns HTTP 403 or HTML
+
+That usually means the upstream provider returned an anti-bot or Cloudflare challenge page instead of JSON. In that case:
+
+- try a direct provider API origin
+- try a different endpoint such as `chat_completions`
+- confirm your provider supports OpenAI-compatible requests
+
+### Manual classification import fails
+
+Check:
+
+- every repository has `category`
+- every repository has `full_name`
+- `full_name` uses `owner/repo`
+- the same repository does not appear twice
 
 ## Directory layout
 
