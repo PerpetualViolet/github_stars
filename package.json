@@ -1,0 +1,11 @@
+{
+  "name": "github-stars-tool",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portable GitHub stars browser automation helpers.",
+  "scripts": {
+    "sync": "node github_stars_apply_lists.js",
+    "audit": "node github_stars_audit_lists.js",
+    "export:browser": "node src/export_stars_browser.js"
+  }
+}

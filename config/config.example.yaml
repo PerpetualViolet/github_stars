@@ -1,0 +1,27 @@
+github:
+  # Leave blank to use the currently logged-in GitHub account from the browser session during sync.
+  user: ""
+  token_env: "GITHUB_TOKEN"
+
+llm:
+  provider: "openai_compatible"
+  api_key_env: "OPENAI_API_KEY"
+  # Example: https://api.openai.com/v1
+  base_url: "https://api.openai.com/v1"
+  endpoint: "chat_completions"
+  model: "gpt-5"
+  structured_output: "json_object"
+  temperature: 0.1
+
+classification:
+  categories_file: "config/categories.example.yaml"
+
+browser:
+  engine: "chrome"
+  debug_port: 9222
+
+data:
+  raw_output: "data/raw/stars.json"
+  normalized_output: "data/normalized/stars.normalized.json"
+  classification_dir: "data/classification"
+  audit_dir: "data/audit"

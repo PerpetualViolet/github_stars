@@ -1,0 +1,35 @@
+{
+  "source": "manual-example",
+  "lists": [
+    {
+      "name": "AI编程代理与Agent技能",
+      "description": "Codex/Claude/Cursor 等编码代理、agent harness、skills、MCP、上下文规划与多代理工作流。"
+    },
+    {
+      "name": "待人工确认",
+      "description": "描述或主题不足，建议打开仓库确认后再放入正式列表。"
+    }
+  ],
+  "repositories": [
+    {
+      "category": "AI编程代理与Agent技能",
+      "full_name": "openai/codex",
+      "url": "https://github.com/openai/codex",
+      "language": "Python",
+      "stars": 0,
+      "topics": [
+        "agent",
+        "coding"
+      ],
+      "description": "Example repository entry.",
+      "reason": "manual",
+      "list_description": "Codex/Claude/Cursor 等编码代理、agent harness、skills、MCP、上下文规划与多代理工作流。"
+    },
+    {
+      "category": "待人工确认",
+      "full_name": "owner/example-repo",
+      "description": "Another example. url can be omitted and will be auto-filled from full_name.",
+      "reason": "manual"
+    }
+  ]
+}

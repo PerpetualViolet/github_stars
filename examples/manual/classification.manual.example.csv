@@ -1,0 +1,3 @@
+category,full_name,url,language,stars,topics,description,reason,list_description
+AI编程代理与Agent技能,openai/codex,https://github.com/openai/codex,Python,0,"agent,coding","Example repository entry.",manual,"Codex/Claude/Cursor 等编码代理、agent harness、skills、MCP、上下文规划与多代理工作流。"
+待人工确认,owner/example-repo,,Unknown,0,,"Another example. url can be omitted and will be auto-filled from full_name.",manual,描述或主题不足，建议打开仓库确认后再放入正式列表。
